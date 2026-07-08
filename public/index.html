@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNS-CV | Seu Currículo no DNS</title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Dynamic Glowing Background Nodes -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <i data-lucide="network" class="icon-glow"></i>
+        <h1>DNS<span>CV</span></h1>
+        <span class="badge">v1.0.0</span>
+      </div>
+      <div class="server-status-pill">
+        <span class="status-dot pinging" id="server-status-dot"></span>
+        <span id="server-status-text">Detectando servidor...</span>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="app-workspace">
+      
+      <!-- Left Column: CV Preview & Editor -->
+      <section class="workspace-col col-left">
+        
+        <!-- Navigation Tab for Left Column -->
+        <div class="tab-navigation">
+          <button class="tab-btn active" data-tab="preview">
+            <i data-lucide="eye"></i> Visualizar Currículo
+          </button>
+          <button class="tab-btn" data-tab="editor">
+            <i data-lucide="edit-3"></i> Editar Dados
+          </button>
+        </div>
+
+        <!-- Tab Content 1: Visual Resume Preview -->
+        <div class="tab-content active" id="tab-preview">
+          <div class="glass-card cv-preview-card">
+            <div class="cv-header">
+              <div class="avatar-placeholder">
+                <i data-lucide="user"></i>
+              </div>
+              <div class="cv-title-block">
+                <h2 id="preview-name">Carregando...</h2>
+                <h3 id="preview-title">...</h3>
+                <span class="cv-location">
+                  <i data-lucide="map-pin"></i> <span id="preview-location">...</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="cv-section">
+              <h4><i data-lucide="book-open"></i> Sobre Mim</h4>
+              <p id="preview-bio">...</p>
+            </div>
+
+            <div class="cv-section">
+              <h4><i data-lucide="wrench"></i> Habilidades</h4>
+              <div class="skills-grid" id="preview-skills">
+                <!-- Skill tags will be injected here -->
+              </div>
+            </div>
+
+            <div class="cv-section">
+              <h4><i data-lucide="briefcase"></i> Experiência</h4>
+              <div class="timeline" id="preview-experience">
+                <!-- Timeline items will be injected here -->
+              </div>
+            </div>
+
+            <div class="cv-section">
+              <h4><i data-lucide="folder-git-2"></i> Projetos</h4>
+              <div class="projects-grid" id="preview-projects">
+                <!-- Projects cards will be injected here -->
+              </div>
+            </div>
+
+            <div class="cv-section cv-footer-contact">
+              <h4><i data-lucide="contact"></i> Canais de Contato</h4>
+              <div class="contacts-grid" id="preview-contacts">
+                <!-- Contacts will be injected here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content 2: Resume JSON Editor -->
+        <div class="tab-content" id="tab-editor">
+          <div class="glass-card editor-card">
+            <h3><i data-lucide="settings"></i> Personalizar Currículo</h3>
+            <p class="section-description">Edite as informações abaixo. As alterações serão aplicadas instantaneamente no Servidor DNS.</p>
+            
+            <form id="cv-editor-form">
+              <!-- Personal Info -->
+              <div class="form-group-box">
+                <h5>Dados Pessoais</h5>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="edit-name">Nome</label>
+                    <input type="text" id="edit-name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="edit-title">Cargo / Subtítulo</label>
+                    <input type="text" id="edit-title" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="edit-location">Localização</label>
+                    <input type="text" id="edit-location" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="edit-bio">Biografia / Resumo</label>
+                  <textarea id="edit-bio" rows="3" required></textarea>
+                </div>
+              </div>
+
+              <!-- Contact Info -->
+              <div class="form-group-box">
+                <h5>Contatos</h5>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="edit-email">E-mail</label>
+                    <input type="email" id="edit-email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="edit-website">Website</label>
+                    <input type="text" id="edit-website" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="edit-github">GitHub</label>
+                    <input type="text" id="edit-github" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="edit-linkedin">LinkedIn</label>
+                    <input type="text" id="edit-linkedin" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skills List (Textarea lines) -->
+              <div class="form-group-box">
+                <h5>Habilidades (Uma por linha)</h5>
+                <div class="form-group">
+                  <textarea id="edit-skills" rows="4" placeholder="Ex: Linguagens: JavaScript, TypeScript, Python"></textarea>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="save-btn">
+                  <i data-lucide="save"></i> Salvar Currículo
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right Column: Interactive Terminal & Server Info -->
+      <section class="workspace-col col-right">
+        
+        <!-- Terminal Simulator -->
+        <div class="glass-card terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="terminal-title">bash - dig @dns-cv</div>
+            <div class="terminal-actions">
+              <button class="terminal-action-btn" id="clear-terminal" title="Limpar terminal">
+                <i data-lucide="trash-2"></i>
+              </button>
+            </div>
+          </div>
+          <div class="terminal-body" id="terminal-output">
+            <div class="terminal-line system-msg">
+              [DNS-CV Terminal Simulator v1.0.0]
+            </div>
+            <div class="terminal-line system-msg">
+              Digite 'help' para ver os comandos de consulta disponíveis ou use 'dig' diretamente.
+            </div>
+            <div class="terminal-line prompt-line">
+              <span class="prompt-prefix">user@dns-cv:~$</span>
+              <span class="command-input-container">
+                <input type="text" id="terminal-input-field" autocomplete="off" placeholder="dig TXT help.cv.local" autofocus>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DNS Query Live Monitor -->
+        <div class="glass-card monitor-card">
+          <div class="monitor-header">
+            <h3><i data-lucide="activity" class="icon-pulse"></i> Tráfego DNS em Tempo Real</h3>
+            <span class="monitor-count" id="log-count">0 conexões</span>
+          </div>
+          <div class="monitor-body">
+            <div class="logs-container" id="dns-logs-list">
+              <div class="empty-logs">
+                <i data-lucide="database-backup"></i>
+                <p>Nenhuma requisição recebida ainda. Teste no simulador acima ou via terminal real!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Setup Guide -->
+        <div class="glass-card setup-card">
+          <h3><i data-lucide="server-crash"></i> Como colocar em produção?</h3>
+          <p class="section-description">Abaixo estão as instruções para hospedar seu currículo no seu próprio domínio na internet.</p>
+          
+          <div class="guide-steps">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-text">
+                <strong>Servidor VPS:</strong> Implante este código em uma VPS Linux (AWS, DigitalOcean, Linode) e libere a porta <strong>UDP 53</strong> no firewall.
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-text">
+                <strong>Rodar como Root:</strong> Portas abaixo de 1024 são protegidas. Execute o servidor usando <code>sudo node server.js</code> ou configure redirecionamento de portas iptables.
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-text">
+                <strong>Configuração DNS:</strong> No seu provedor de domínio (ex: Cloudflare), crie um registro <strong>A</strong> apontando para o IP da sua VPS (ex: <code>ns.seudominio.com</code>).
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-text">
+                <strong>Delegação de Subdomínio:</strong> Adicione um registro <strong>NS</strong> para o subdomínio <code>cv.seudominio.com</code> apontando para <code>ns.seudominio.com</code>. Pronto! Qualquer um no planeta poderá digitar <code>dig TXT bio.cv.seudominio.com</code> e ler seu currículo.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- JS Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

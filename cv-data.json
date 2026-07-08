@@ -1,0 +1,67 @@
+{
+  "personal": {
+    "name": "Gabriel de Morais Bueno Santa Clara",
+    "title": "Analise e Desenvolvimento de Sistemas | Atendimento, Copa & Cozinha",
+    "location": "Curitiba, PR - Brasil",
+    "bio": "Estudante de Analise e Desenvolvimento de Sistemas (3o semestre) com solida experiencia pratica no setor de alimentacao e atendimento (pubs, restaurantes e vendas). Perfil extremamente agil, pontual e proativo, com facilidade para coordenar equipes sob pressao, operar sistemas de vendas (PDV) e garantir excelencia no atendimento e preparo."
+  },
+  "contact": {
+    "email": "gabrielbuenoo447@gmail.com",
+    "phone": "(41) 9 9850-8123",
+    "address": "Rua Joao Guerino Fabri, 39 - Cajuru, Curitiba/PR",
+    "github": "github.com/Nyox",
+    "linkedin": "linkedin.com/in/gabriel-bueno"
+  },
+  "skills": [
+    "Atendimento e Relacionamento com o Cliente (Salao, Mesa e Balcao)",
+    "Supervisao Operacional e Lideranca de Equipes em Pubs/Restaurantes",
+    "Operacao de Caixa, Maquinas de Cartao e Sistemas de Venda (PDV)",
+    "Boas Praticas na Preparacao de Alimentos (Mise en place e Cozinha)",
+    "Informatica: Pacote Office, Windows e Logica de Programacao"
+  ],
+  "experience": [
+    {
+      "role": "Consultor Comercial",
+      "company": "Evolua Solucoes Financeiras LTDA",
+      "period": "06/2025 - 11/2025",
+      "description": "Atendimento direto e consultivo ao cliente, com foco em superacao de metas diarias. Desenvolvimento de comunicacao assertiva, negociacao e agilidade na resolucao de problemas."
+    },
+    {
+      "role": "Coordenador Operacional",
+      "company": "Merida Comercio de Alimentos e Bebidas LTDA",
+      "period": "09/2024 - 03/2025",
+      "description": "Supervisao integral do fluxo de pedidos e atendimento ao cliente. Coordenacao da equipe de salao/cozinha para garantia da agilidade nas entregas, controle de qualidade e organizacao do ambiente operacional."
+    },
+    {
+      "role": "Atendente",
+      "company": "Waffer Marcante LTDA",
+      "period": "04/2024 - 08/2024",
+      "description": "Atendimento de balcao e mesas em ambiente de alto fluxo. Organizacao agil de pedidos, controle de caixa e operacao de sistemas de vendas (PDV) e maquinas de cartao."
+    },
+    {
+      "role": "Auxiliar de Cozinha",
+      "company": "Comercial Brejas e Birras Pub e Shop LTDA",
+      "period": "10/2023 - 02/2024",
+      "description": "Preparo de insumos (mise en place), montagem tecnica de pratos e porcoes. Organizacao e higienizacao da praca de trabalho, com suporte dinamico ao bar em dias de pico de movimento."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Ensino Superior: Analise e Desenvolvimento de Sistemas (ADS)",
+      "school": "Uninter (3o Semestre)",
+      "period": "Cursando"
+    },
+    {
+      "degree": "Ensino Medio",
+      "school": "Colegio Estadual Cecilia Meireles",
+      "period": "Concluido em 2022"
+    }
+  ],
+  "projects": [
+    {
+      "name": "DNS-CV",
+      "description": "Desenvolvimento deste proprio curriculo via DNS, utilizando Node.js e UDP sockets.",
+      "link": "github.com/Nyox/dns-cv"
+    }
+  ]
+}
