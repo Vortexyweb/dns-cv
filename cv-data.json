@@ -9,7 +9,7 @@
     "email": "gabrielbuenoo447@gmail.com",
     "phone": "(41) 9 9850-8123",
     "address": "Rua Joao Guerino Fabri, 39 - Cajuru, Curitiba/PR",
-    "github": "github.com/Nyox",
+    "github": "github.com/Vortexyweb",
     "linkedin": "linkedin.com/in/gabriel-bueno"
   },
   "skills": [
@@ -60,8 +60,33 @@
   "projects": [
     {
       "name": "DNS-CV",
-      "description": "Desenvolvimento deste proprio curriculo via DNS, utilizando Node.js e UDP sockets.",
-      "link": "github.com/Nyox/dns-cv"
+      "description": "Curriculo dinamico servido por protocolo DNS (UDP/TCP) e dashboard web com terminal simulado.",
+      "link": "github.com/Vortexyweb/dns-cv"
+    },
+    {
+      "name": "Ciclo Empatia (Lunae)",
+      "description": "Aplicativo mobile (React Native) e API (FastAPI) para compartilhamento de ciclos de empatia entre casais.",
+      "link": "github.com/Vortexyweb/ciclo_empatia"
+    },
+    {
+      "name": "Personal Cloud",
+      "description": "Servidor de nuvem pessoal autohospedado com gerenciamento de arquivos em disco via painel web dinamico.",
+      "link": "github.com/Vortexyweb/personal-cloud"
+    },
+    {
+      "name": "Personal Wiki",
+      "description": "Wiki pessoal local-first para anotacoes em Markdown com busca de texto e auto-save automatico.",
+      "link": "github.com/Vortexyweb/personal-wiki"
+    },
+    {
+      "name": "Local Network Scanner",
+      "description": "Escaneador de rede Wi-Fi local para mapeamento de dispositivos e medicao de latencia com dashboard.",
+      "link": "github.com/Vortexyweb/network-scanner"
+    },
+    {
+      "name": "Desktop Hardware Monitor",
+      "description": "Monitor de recursos e hardware de desktop (CPU cores, RAM, rede, uptime) em tempo real via SSE.",
+      "link": "github.com/Vortexyweb/desktop-hardware-monitor"
     }
   ]
 }
