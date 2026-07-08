@@ -107,14 +107,15 @@
         /* Navigation */
         .nav {
             display: flex;
-            justify-content: center;
-            gap: 0;
+            flex-direction: column;
+            gap: 8px;
             margin-bottom: 30px;
             background: var(--bg-card);
             border-radius: 16px;
-            padding: 6px;
+            padding: 12px;
             border: 1px solid var(--border-color);
             backdrop-filter: blur(10px);
+            width: fit-content;
         }
 
         .nav-btn {
@@ -130,8 +131,8 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
-            position: relative;
+            gap: 10px;
+            text-align: left;
         }
 
         .nav-btn:hover {
