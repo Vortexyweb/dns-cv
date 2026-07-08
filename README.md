@@ -78,4 +78,4 @@ dig TXT experience.cv.local @127.0.0.1 -p 1053
 
 * **Gabriel Bueno** - *ADS Student & Tech Enthusiast*
 * GitHub: [@Vortexyweb](https://github.com/Vortexyweb)
-* LinkedIn: [Gabriel Bueno](https://linkedin.com/in/gabriel-bueno)
+* LinkedIn: [Gabriel Bueno](https://linkedin.com/in/gabriel-bueno-67ab79383)
