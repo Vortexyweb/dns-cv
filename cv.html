@@ -303,14 +303,38 @@
             border: 1px solid rgba(139, 92, 246, 0.2);
             border-radius: var(--border-radius);
             padding: 20px;
-            transition: var(--transition-smooth);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
         }
 
         .project-card:hover {
             border-color: var(--color-accent-secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3), 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .project-card:active {
+            transform: translateY(-4px) scale(1.01);
         }
 
         .project-card h3 {
@@ -342,6 +366,12 @@
             border-radius: 12px;
             font-size: 10px;
             font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-tag {
+            background: rgba(139, 92, 246, 0.35);
+            transform: scale(1.05);
         }
 
         .project-link {
@@ -355,7 +385,8 @@
             transition: var(--transition-smooth);
         }
 
-        .project-link:hover {
+        .project-card:hover .project-link {
+            gap: 10px;
             color: var(--text-primary);
         }
 
@@ -581,7 +612,7 @@
             <div class="card">
                 <h2><i data-lucide="folder-git-2"></i> Projetos em Destaque</h2>
                 <div class="projects-grid">
-                    <div class="project-card" onclick="window.open('https://github.com/Vortexyweb/dns-cv')">
+                    <a href="https://github.com/Vortexyweb/dns-cv" target="_blank" class="project-card">
                         <h3>🔐 DNS-CV</h3>
                         <p>Currículo servido via consultas DNS — projeto que demonstra conhecimento em redes e protocolos.</p>
                         <div class="project-tags">
@@ -590,8 +621,8 @@
                             <span class="project-tag">Redes</span>
                         </div>
                         <span class="project-link">Ver no GitHub →</span>
-                    </div>
-                    <div class="project-card" onclick="window.open('https://github.com/Vortexyweb/password-auditor')">
+                    </a>
+                    <a href="https://github.com/Vortexyweb/password-auditor" target="_blank" class="project-card">
                         <h3>🛡️ Password Auditor</h3>
                         <p>CLI que verifica senhas contra bases de dados vazadas usando k-anonimidade.</p>
                         <div class="project-tags">
@@ -600,8 +631,8 @@
                             <span class="project-tag">CLI</span>
                         </div>
                         <span class="project-link">Ver no GitHub →</span>
-                    </div>
-                    <div class="project-card" onclick="window.open('https://github.com/Vortexyweb/network-simulator')">
+                    </a>
+                    <a href="https://github.com/Vortexyweb/network-simulator" target="_blank" class="project-card">
                         <h3>🌐 Network Simulator</h3>
                         <p>Simulador visual de rede interativo com WebSocket e Canvas.</p>
                         <div class="project-tags">
@@ -610,8 +641,8 @@
                             <span class="project-tag">Canvas</span>
                         </div>
                         <span class="project-link">Ver no GitHub →</span>
-                    </div>
-                    <div class="project-card" onclick="window.open('https://github.com/Vortexyweb/2fa-totp-cli')">
+                    </a>
+                    <a href="https://github.com/Vortexyweb/2fa-totp-cli" target="_blank" class="project-card">
                         <h3>🔑 2FA TOTP CLI</h3>
                         <p>Gerador de autenticação 2FA no terminal com cofre criptografado.</p>
                         <div class="project-tags">
@@ -620,8 +651,8 @@
                             <span class="project-tag">Auth</span>
                         </div>
                         <span class="project-link">Ver no GitHub →</span>
-                    </div>
-                    <div class="project-card" onclick="window.open('https://github.com/Vortexyweb/snake-multiplayer')">
+                    </a>
+                    <a href="https://github.com/Vortexyweb/snake-multiplayer" target="_blank" class="project-card">
                         <h3>🐍 Snake Multiplayer</h3>
                         <p>Jogo online com multiplayer via WebSocket e power-ups.</p>
                         <div class="project-tags">
@@ -630,15 +661,15 @@
                             <span class="project-tag">Games</span>
                         </div>
                         <span class="project-link">Ver no GitHub →</span>
-                    </div>
-                    <div class="project-card" onclick="window.open('https://github.com/Vortexyweb?tab=repositories')">
+                    </a>
+                    <a href="https://github.com/Vortexyweb?tab=repositories" target="_blank" class="project-card">
                         <h3>📦 + 11 Projetos</h3>
                         <p>Veja todos os projetos no meu perfil GitHub.</p>
                         <div class="project-tags">
                             <span class="project-tag">Portfolio</span>
                         </div>
                         <span class="project-link">Ver todos →</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -673,7 +704,7 @@
                         <i data-lucide="phone" style="width:20px;height:20px"></i>
                         <span>(41) 9 9850-8123</span>
                     </a>
-                    <a href="https://linkedin.com/in/gabriel-bueno" target="_blank" class="contact-item">
+                    <a href="https://www.linkedin.com/in/gabriel-bueno-67ab79383/" target="_blank" class="contact-item">
                         <i data-lucide="linkedin" style="width:20px;height:20px"></i>
                         <span>LinkedIn</span>
                     </a>
