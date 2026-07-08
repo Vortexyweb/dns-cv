@@ -1,0 +1,758 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel de Morais Bueno | CurrÃ­culo Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --font-primary: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --bg-main: hsl(224, 25%, 8%);
+            --bg-card: hsla(224, 25%, 12%, 0.55);
+            --border-color: hsla(224, 20%, 25%, 0.45);
+            --text-primary: hsl(210, 40%, 98%);
+            --text-secondary: hsl(215, 20%, 70%);
+            --text-muted: hsl(215, 15%, 50%);
+            --color-accent: hsl(190, 95%, 45%);
+            --color-accent-secondary: hsl(260, 85%, 65%);
+            --color-success: hsl(145, 80%, 45%);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .bg-glow-1 {
+            width: 400px; height: 400px;
+            top: 10%; left: -100px;
+            background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+        }
+
+        .bg-glow-2 {
+            width: 500px; height: 500px;
+            bottom: 10%; right: -100px;
+            background: radial-gradient(circle, var(--color-accent-secondary) 0%, transparent 70%);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .header .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-secondary));
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            border: 3px solid var(--color-accent);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .header .subtitle {
+            color: var(--color-accent);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .header .location {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 30px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            width: fit-content;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: var(--font-primary);
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-btn.active {
+            background: var(--color-accent);
+            color: white;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(6, 182, 212, 0.6); }
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-accent);
+        }
+
+        .card h2 i {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* About */
+        .about-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-item {
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: var(--transition-smooth);
+        }
+
+        .skill-item:hover {
+            border-color: var(--color-accent);
+            background: rgba(6, 182, 212, 0.12);
+        }
+
+        .skill-item strong {
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(6, 182, 212, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            border: 2px solid var(--bg-main);
+        }
+
+        .timeline-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item .company {
+            color: var(--color-accent);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .timeline-item .date {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .timeline-item li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item li::before {
+            content: 'â†’';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            background: rgba(139, 92, 246, 0.08);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-accent-secondary);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3), 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .project-card:active {
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        .project-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-card p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--color-accent-secondary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-tag {
+            background: rgba(139, 92, 246, 0.35);
+            transform: scale(1.05);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--color-accent);
+            font-size: 12px;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover .project-link {
+            gap: 10px;
+            color: var(--text-primary);
+        }
+
+        /* Education */
+        .edu-item {
+            padding: 15px;
+            background: rgba(6, 182, 212, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--color-accent);
+            margin-bottom: 12px;
+        }
+
+        .edu-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .edu-item .school {
+            color: var(--color-accent);
+            font-size: 14px;
+        }
+
+        .edu-item .year {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(6, 182, 212, 0.05);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            color: var(--text-secondary);
+        }
+
+        .contact-item:hover {
+            border-color: var(--color-accent);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .contact-item i {
+            color: var(--color-accent);
+        }
+
+        .contact-item span {
+            font-size: 13px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 24px; }
+            .nav { gap: 6px; }
+            .nav-btn { padding: 8px 14px; font-size: 12px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div class="container">
+        <header class="header">
+            <div class="avatar">ðŸ‘¨â€ðŸ’»</div>
+            <h1>Gabriel de Morais Bueno</h1>
+            <p class="subtitle">Desenvolvedor Full Stack</p>
+            <p class="location">
+                <i data-lucide="map-pin" style="width:14px;height:14px;vertical-align:middle"></i>
+                Cajuru, Curitiba - PR
+            </p>
+        </header>
+
+        <nav class="nav">
+            <button class="nav-btn active" data-section="about">
+                <i data-lucide="user" style="width:16px;height:16px"></i> Sobre
+            </button>
+            <button class="nav-btn" data-section="skills">
+                <i data-lucide="code-2" style="width:16px;height:16px"></i> Skills
+            </button>
+            <button class="nav-btn" data-section="experience">
+                <i data-lucide="briefcase" style="width:16px;height:16px"></i> ExperiÃªncia
+            </button>
+            <button class="nav-btn" data-section="projects">
+                <i data-lucide="folder-git-2" style="width:16px;height:16px"></i> Projetos
+            </button>
+            <button class="nav-btn" data-section="education">
+                <i data-lucide="graduation-cap" style="width:16px;height:16px"></i> FormaÃ§Ã£o
+            </button>
+            <button class="nav-btn" data-section="contact">
+                <i data-lucide="mail" style="width:16px;height:16px"></i> Contato
+            </button>
+        </nav>
+
+        <!-- Sobre -->
+        <div class="section active" id="about">
+            <div class="card">
+                <h2><i data-lucide="user"></i> Sobre Mim</h2>
+                <p class="about-text">
+                    Estudante de <strong>AnÃ¡lise e Desenvolvimento de Sistemas</strong> (3Âº Semestre) 
+                    com paixÃ£o por <strong>seguranÃ§a da informaÃ§Ã£o</strong>, <strong>redes</strong> e 
+                    <strong>desenvolvimento full stack</strong>.<br><br>
+                    Possuo portfÃ³lio com <strong>17 projetos no GitHub</strong> demonstrando evoluÃ§Ã£o tÃ©cnica 
+                    contÃ­nua, desde ferramentas de CLI atÃ© simuladores de rede interativos.<br><br>
+                    Busco oportunidade como <strong>Desenvolvedor Junior</strong> ou <strong>EstagiÃ¡rio de TI</strong> 
+                    para aplicar meus conhecimentos em projetos reais e contribuir com soluÃ§Ãµes inovadoras.
+                </p>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section" id="skills">
+            <div class="card">
+                <h2><i data-lucide="code-2"></i> Habilidades TÃ©cnicas</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <strong>JavaScript</strong>
+                        Node.js, ES6+, Async/Await
+                    </div>
+                    <div class="skill-item">
+                        <strong>Frontend</strong>
+                        HTML5, CSS3, Canvas API
+                    </div>
+                    <div class="skill-item">
+                        <strong>Backend</strong>
+                        Express.js, REST APIs
+                    </div>
+                    <div class="skill-item">
+                        <strong>Banco de Dados</strong>
+                        SQLite, MySQL
+                    </div>
+                    <div class="skill-item">
+                        <strong>DevOps</strong>
+                        Git, GitHub Actions, Docker
+                    </div>
+                    <div class="skill-item">
+                        <strong>Redes</strong>
+                        DNS, HTTP, WebSockets, TCP/IP
+                    </div>
+                    <div class="skill-item">
+                        <strong>SeguranÃ§a</strong>
+                        AutenticaÃ§Ã£o, Criptografia, Pentest
+                    </div>
+                    <div class="skill-item">
+                        <strong>Ferramentas</strong>
+                        VS Code, PowerShell, Linux
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ExperiÃªncia -->
+        <div class="section" id="experience">
+            <div class="card">
+                <h2><i data-lucide="briefcase"></i> ExperiÃªncia Profissional</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Consultor Comercial</h3>
+                        <span class="company">Evolua SoluÃ§Ãµes Financeiras LTDA</span>
+                        <div class="date">Jun 2025 â€“ Nov 2025</div>
+                        <ul>
+                            <li>Atendimento consultivo atingindo 100% das metas mensais</li>
+                            <li>ComunicaÃ§Ã£o e persuasÃ£o em ambiente comercial competitivo</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Coordenador Operacional</h3>
+                        <span class="company">Merida ComÃ©rcio de Alimentos e Bebidas LTDA</span>
+                        <div class="date">Set 2024 â€“ Mar 2025</div>
+                        <ul>
+                            <li>SupervisÃ£o de equipe e otimizaÃ§Ã£o de processos operacionais</li>
+                            <li>ReduÃ§Ã£o de ~20% no tempo de entrega via melhorias no fluxo</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Atendente</h3>
+                        <span class="company">Waffer Marcante LTDA</span>
+                        <div class="date">Abr 2024 â€“ Ago 2024</div>
+                        <ul>
+                            <li>Atendimento de balcÃ£o e mesas, operaÃ§Ã£o de PDV e sistemas de cartÃ£o</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Auxiliar de Cozinha</h3>
+                        <span class="company">Comercial Brejas e Birras Pub e Shop LTDA</span>
+                        <div class="date">Out 2023 â€“ Fev 2024</div>
+                        <ul>
+                            <li>Preparo de insumos, montagem de pratos e suporte ao bar em alto movimento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projetos -->
+        <div class="section" id="projects">
+            <div class="card">
+                <h2><i data-lucide="folder-git-2"></i> Projetos em Destaque</h2>
+                <div class="projects-grid">
+                    <a href="https://github.com/Vortexyweb/dns-cv" target="_blank" class="project-card">
+                        <h3>ðŸ” DNS-CV</h3>
+                        <p>CurrÃ­culo servido via consultas DNS â€” projeto que demonstra conhecimento em redes e protocolos.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">DNS</span>
+                            <span class="project-tag">Redes</span>
+                        </div>
+                        <span class="project-link">Ver no GitHub â†’</span>
+                    </a>
+                    <a href="https://github.com/Vortexyweb/password-auditor" target="_blank" class="project-card">
+                        <h3>ðŸ›¡ï¸ Password Auditor</h3>
+                        <p>CLI que verifica senhas contra bases de dados vazadas usando k-anonimidade.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">SeguranÃ§a</span>
+                            <span class="project-tag">CLI</span>
+                        </div>
+                        <span class="project-link">Ver no GitHub â†’</span>
+                    </a>
+                    <a href="https://github.com/Vortexyweb/network-simulator" target="_blank" class="project-card">
+                        <h3>ðŸŒ Network Simulator</h3>
+                        <p>Simulador visual de rede interativo com WebSocket e Canvas.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">WebSocket</span>
+                            <span class="project-tag">Canvas</span>
+                        </div>
+                        <span class="project-link">Ver no GitHub â†’</span>
+                    </a>
+                    <a href="https://github.com/Vortexyweb/2fa-totp-cli" target="_blank" class="project-card">
+                        <h3>ðŸ”‘ 2FA TOTP CLI</h3>
+                        <p>Gerador de autenticaÃ§Ã£o 2FA no terminal com cofre criptografado.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">Criptografia</span>
+                            <span class="project-tag">Auth</span>
+                        </div>
+                        <span class="project-link">Ver no GitHub â†’</span>
+                    </a>
+                    <a href="https://github.com/Vortexyweb/snake-multiplayer" target="_blank" class="project-card">
+                        <h3>ðŸ Snake Multiplayer</h3>
+                        <p>Jogo online com multiplayer via WebSocket e power-ups.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">WebSocket</span>
+                            <span class="project-tag">Games</span>
+                        </div>
+                        <span class="project-link">Ver no GitHub â†’</span>
+                    </a>
+                    <a href="https://github.com/Vortexyweb?tab=repositories" target="_blank" class="project-card">
+                        <h3>ðŸ“¦ + 11 Projetos</h3>
+                        <p>Veja todos os projetos no meu perfil GitHub.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Portfolio</span>
+                        </div>
+                        <span class="project-link">Ver todos â†’</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- FormaÃ§Ã£o -->
+        <div class="section" id="education">
+            <div class="card">
+                <h2><i data-lucide="graduation-cap"></i> FormaÃ§Ã£o AcadÃªmica</h2>
+                <div class="edu-item">
+                    <h3>AnÃ¡lise e Desenvolvimento de Sistemas</h3>
+                    <span class="school">Uninter</span>
+                    <div class="year">3Âº Semestre (Cursando) â€” ConclusÃ£o: 2026</div>
+                </div>
+                <div class="edu-item">
+                    <h3>Ensino MÃ©dio Completo</h3>
+                    <span class="school">ColÃ©gio Estadual CecÃ­lia Meireles</span>
+                    <div class="year">ConcluÃ­do em 2022</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contato -->
+        <div class="section" id="contact">
+            <div class="card">
+                <h2><i data-lucide="mail"></i> Canais de Contato</h2>
+                <div class="contact-grid">
+                    <a href="mailto:gabrielbuenoo447@gmail.com" class="contact-item">
+                        <i data-lucide="mail" style="width:20px;height:20px"></i>
+                        <span>gabrielbuenoo447@gmail.com</span>
+                    </a>
+                    <a href="tel:+5541998508123" class="contact-item">
+                        <i data-lucide="phone" style="width:20px;height:20px"></i>
+                        <span>(41) 9 9850-8123</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gabriel-bueno-67ab79383/" target="_blank" class="contact-item">
+                        <i data-lucide="linkedin" style="width:20px;height:20px"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/Vortexyweb" target="_blank" class="contact-item">
+                        <i data-lucide="github" style="width:20px;height:20px"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Escaneie o QR Code para acessar este currÃ­culo</p>
+            <p style="margin-top:8px">
+                <a href="https://github.com/Vortexyweb">github.com/Vortexyweb</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // NavegaÃ§Ã£o
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.section).classList.add('active');
+            });
+        });
+
+        // Inicializa Ã­cones Lucide
+        lucide.createIcons();
+    </script>
+</body>
+</html><!-- Updated: 2026-07-08 19:50:38 -->
+
